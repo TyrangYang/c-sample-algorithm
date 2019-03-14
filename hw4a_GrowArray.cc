@@ -200,49 +200,49 @@ public:
 
 int main(int argc, char const *argv[])
 {
-	cout << "*****This part just for test.*****" << endl;
-	vector<double> x;
-	vector<double> y;
-	double a,b;
-	int num_grid = 4;
-	int num_Node = 0;
-	ifstream f("convexhullpoints.txt");
+	// cout << "*****This part just for test.*****" << endl;
+	// vector<double> x;
+	// vector<double> y;
+	// double a,b;
+	// int num_grid = 4;
+	// int num_Node = 0;
+	// ifstream f("convexhullpoints.txt");
 	
-	while(!f.eof()){
-		f >> a >> b;
-		x.push_back(a);
-		y.push_back(b);
-		num_Node++;
-	}
-	cout << num_Node << endl;
-	for(int i = 0; i < num_Node;i++){
-		cout << x[i] << " " << y[i] << endl;
-	}
+	// while(!f.eof()){
+	// 	f >> a >> b;
+	// 	x.push_back(a);
+	// 	y.push_back(b);
+	// 	num_Node++;
+	// }
+	// cout << num_Node << endl;
+	// for(int i = 0; i < num_Node;i++){
+	// 	cout << x[i] << " " << y[i] << endl;
+	// }
 	
-	double xmax = *max_element(x.begin(), x.end());
-	double xmin = *min_element(x.begin(), x.end());
-	double ymax = *max_element(y.begin(), y.end());
-	double ymin = *min_element(y.begin(), y.end());
-	double eps = 0.001;
+	// double xmax = *max_element(x.begin(), x.end());
+	// double xmin = *min_element(x.begin(), x.end());
+	// double ymax = *max_element(y.begin(), y.end());
+	// double ymin = *min_element(y.begin(), y.end());
+	// double eps = 0.001;
 
-	double XperBox  = (double)num_grid/(xmax-xmin+eps);
-	double YperBox = (double)num_grid/(ymax-ymin+eps);
+	// double XperBox  = (double)num_grid/(xmax-xmin+eps);
+	// double YperBox = (double)num_grid/(ymax-ymin+eps);
 
-	for(int i = 0; i < num_Node;i++){
-		x[i] = (x[i] - xmin) * XperBox;
-		y[i] = (y[i] - ymin) * YperBox;
-	}
+	// for(int i = 0; i < num_Node;i++){
+	// 	x[i] = (x[i] - xmin) * XperBox;
+	// 	y[i] = (y[i] - ymin) * YperBox;
+	// }
 
-	point points[num_Node];
-	for(int i = 0; i < num_Node;i++){
-		points[i].x = x[i];
-		points[i].y =  y[i];
-	}
-	for(int i = 0; i < num_Node;i++){
-		cout << points[i].x << "---" << points[i].y << endl;
-	}
+	// point points[num_Node];
+	// for(int i = 0; i < num_Node;i++){
+	// 	points[i].x = x[i];
+	// 	points[i].y =  y[i];
+	// }
+	// for(int i = 0; i < num_Node;i++){
+	// 	cout << points[i].x << "---" << points[i].y << endl;
+	// }
 
-	cout << "************************************" << endl;
+	// cout << "************************************" << endl;
 
 	convexHull ch(4); // create a 16x16 grid of GrowArray
     ch.read("convexhullpoints.txt");

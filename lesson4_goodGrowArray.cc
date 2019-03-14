@@ -10,16 +10,16 @@ private:
 	int capacity;
 	void grow(){
 		T* old = data;
-		data = new T[2*capacity+1];
-		capacity = 2*capacity+1;
+		data = new T[2*capacity];
+		capacity = 2*capacity;
 		for(int i = 0; i < len; i++){
 			data[i] = old[i];
 		}
 		delete[] old;
 	}
 public:
-	goodGrowArray() : data(nullptr), len(0), capacity(0){}
-	goodGrowArray(int capacity): data(new T[0]), len(0), capacity(capacity){}
+	goodGrowArray() : data(new T[1]), len(0), capacity(1){}
+	goodGrowArray(int capacity): data(new T[1]), len(0), capacity(capacity){}
 	~goodGrowArray(){
 		delete[] data;
 	}
