@@ -22,7 +22,7 @@ void bubblesort(int x[], int n){
 			x[i+1] = temp;
 		}
 		}
-	// shower when add flage
+	// shower when add flag
 	}
 }
 
@@ -150,9 +150,6 @@ void FischerYates(int x[], int n){
 
 	}
 }
-
-
-
 
 int main(){
 

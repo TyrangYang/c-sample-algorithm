@@ -19,9 +19,9 @@ void quickSort(int x[], int L, int R, int k){
     x[pivotIndex] = x[R];
     x[R] = temp;
     while(i < j){
-        while(x[i] < pivot && i < j)
+        while(x[i] < pivot && i < j) // reach the first one larger than or equal to pivot
             i++;
-        while(x[j] >= pivot && i < j)
+        while(x[j] >= pivot && i < j) // reach the last one smaller than pivot. // here must have equal, since the last one is pivot.
             j--;
         if(i < j) {
             int temp = x[j];
@@ -35,7 +35,7 @@ void quickSort(int x[], int L, int R, int k){
     x[R] = x[i];
     x[i] = temp;
 
-    if(i - L > k)
+    if((i-1) - L > k)
         quickSort(x, L, i, k);
     if(R - (i+1) > k)
         quickSort(x, i+1, R, k);

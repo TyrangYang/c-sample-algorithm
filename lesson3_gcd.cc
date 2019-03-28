@@ -27,6 +27,14 @@ int gcd(int a, int b){ // greatest common divisor.
 	return big;
 }
 
+int gcdRec(int a, int b){
+	int small = min(a, b);
+	int big = max(a, b);
+	if(small == 0)
+		return big;
+	return gcdRec(small, big % small);
+}
+
 int lcm(int a, int b){ // least common multiple.
 	return a * b / gcd(a, b);
 }
@@ -34,5 +42,6 @@ int lcm(int a, int b){ // least common multiple.
 
 int main(){
 	cout << bruteforcegcd(3025, 1025) << endl;
+	cout << gcdRec(18,12) << endl;
 	cout << "gcd: " << gcd(18, 12) << "  lcm: " << lcm(18, 12) << endl;
 }

@@ -39,10 +39,10 @@ int binarySearchRec(int x[], int L, int R, int target){
 }
 
 
-int x[] = {1,3,4,5,6,9,10,19,20,26,31,40,99,200,221};
-
+// int x[] = {1,3,4,5,6,9,10,19,20,26,31,40,99,200,221};
+int x[] = {1,2};
 int main(){
-	int target = 221;
+	int target = 2;
 	// cin >> target;
 	cout << binarySearch(x,sizeof(x)/sizeof(int),target) << '\n';
 	cout << binarySearchRec(x,0,sizeof(x)/sizeof(int)-1,target) << '\n';

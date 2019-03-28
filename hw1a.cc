@@ -28,7 +28,7 @@ int improvedEratosthenes(uint64_t n){
     if(isPrime[i]){
       //cout << i << " ";
       num_Prime++;
-      for (uint64_t j = i*i; j <= n ; j += 2 * i)
+      for (uint64_t j = i*i; j <= n ; j += 2 * i) // improve from for(uint64_t j=i; j<=n; j+=i)
         isPrime[j] = false;
     }
   }

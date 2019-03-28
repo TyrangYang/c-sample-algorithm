@@ -1,7 +1,10 @@
 #include <iostream>
-#include <vector>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
+// template <typename T>
 class LinkedList2
 {
 private:
@@ -9,6 +12,7 @@ private:
 	{
 	public:
 		LinkedListNode(){}
+		LinkedListNode(int val, LinkedListNode* next): val(val), next(next){}
 		~LinkedListNode(){}
 		int val;
 		LinkedListNode* next;
@@ -170,29 +174,82 @@ public:
 			removeEnd();
 		}
 	}
+
+	class const_iterator
+	{
+	private:
+		LinkedList2& list;
+		LinkedListNode* temp;
+	public:
+		const_iterator(LinkedList2& list): list(list), temp(list.head){}
+		~const_iterator(){};
+
+		bool operator !() const {
+			if(temp != nullptr)
+				return true;
+			// if(temp -> next != nullptr)
+			// 	return true;
+			return false;
+		}
+
+		void operator ++() {
+			temp = temp -> next;
+		}
+		
+		int operator *() const {
+			return temp -> val;
+		}
+	};
+
+	friend ostream& operator <<(ostream& s, LinkedList2& list){
+		for (LinkedList2::const_iterator i(list); !i; ++i)
+		{
+			s << *i << " ";
+		}
+		return s;
+	}
 };
 
 
 int main(int argc, char const *argv[])
 {
 	LinkedList2 ls;
-	// ls.addStart(1);
-	// ls.addStart(2);
-	// ls.addStart(100);
-	// ls.addEnd(9);
-	// ls.addEnd(8);
-	// ls.removeStart();
-	// ls.removeEnd();
-	ls.ADD_FRONT(1,2,10);
-	ls.ADD_BACK(5,5,25);
-	// cout << "start: " << ls.getStartVal() << endl;
-	// cout << "end: " << ls.getTailVal() << endl;
-	ls.OUTPUT();
-	ls.REMOVE_FRONT(2);
-	ls.REMOVE_BACK(2);
-	ls.OUTPUT();
-	// for(int i=0; i < 2; i++){
-	// 	cout << head[0] << endl;
+
+	ifstream f("HW4b.txt");
+	string oneline;
+	while(!f.eof()){
+		getline(f,oneline);
+		replace(oneline.begin(), oneline.end(), ':', ' ');
+		istringstream linestr(oneline);
+		string cmd;
+		int a, b, c;
+		linestr >> cmd >> a >> b >> c;
+		if(cmd == "ADD_FRONT"){
+			ls.ADD_FRONT(a, b, c);
+			continue;
+		}
+		if(cmd == "ADD_BACK"){
+			ls.ADD_BACK(a, b, c);
+			continue;
+		}
+		if(cmd == "REMOVE_FRONT"){
+			ls.REMOVE_FRONT(a);
+			continue;
+		}
+		if(cmd == "REMOVE_BACK"){
+			ls.REMOVE_BACK(a);
+			continue;
+		}
+		if(cmd == "OUTPUT"){
+			cout << ls << endl;
+		}
+	}
+
+	// ls.OUTPUT();
+
+	// for (LinkedList2 :: const_iterator i(ls); !i; ++i)
+	// {
+	// 	cout << *i << " ";
 	// }
 	return 0;
 }

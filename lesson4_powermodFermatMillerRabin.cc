@@ -28,12 +28,17 @@ uint64_t power(uint64_t a, uint64_t n){
 
 // a^n mod m
 uint64_t powermod(uint64_t a, uint64_t n, uint64_t m){
-	uint64_t prod = 1; // a^49 49 = 32 + 16 + 1 = 110001
+	uint64_t prod = 1;
+	// a^11 11 = 8 + 2 + 1 = 01011 // a^11 = a^(1+2+8) = a^1 * a^2 * a^8
+	// the basic idea is shift the bit. It will more understandable than odd/even number.
+	// if the last bit is 0, we make a become a^2.
+	// if the last bit is 1, prod * a.
 	while(n > 0){
-		if(n % 2 != 0)
+		if(n % 2 != 0) // n&1 // n is odd, n&1 is true
 			prod = prod * a % m;
 		a = a * a % m; // can not be prod = prod * prod % m
-		// Because prod * prod will multipul extra a inside. For n = 11, (((prod * a)^2 * a)^2^2 * a)^2. this is wrong
+		// Because prod * prod will multipul extra a inside. 
+		// For n = 11, n(binary)=01011, (((prod * a)^2 * a)^2^2 * a)^2. this is wrong
 		// However, prod should be prod * a * a^2 * a^8.
 		n = n / 2; // compiler n>>=1
 	}
@@ -60,12 +65,12 @@ bool MillerRabin(uint64_t p, int k){
 		uint64_t a = random(2,p-2);
 		uint64_t d = p-1;
 		uint64_t s = 0;
-		cout << "MillerRabin a= "<< a << " p="<< p<< endl;
+		// cout << "MillerRabin a= "<< a << " p="<<	 p<< endl;
 		while (d % 2 == 0) {// d & 1 == 0
 			s++;
 			d /= 2; //d >> =1
 		}
-		cout <<"d=" << d << "  s=" << s << endl;
+		// cout <<"d=" << d << "  s=" << s << endl;
 		// d*2^s = p-1 (d is odd number)
 		// d contains high-order, non-zero bits(stripedd low zreo bits off)
 		// s = #of bits that were stripp off
@@ -73,7 +78,8 @@ bool MillerRabin(uint64_t p, int k){
 		cout << "x= " << x << endl;
 		if(x == 1 || x == p-1)
 			continue;
-		for(int j = 0; j < s-1; j++){
+		// kurger version //
+		for(int j = 0; j < s-1; j++){ 
 			x = x * x % p;
 			if (x == 1)
 				return false;
@@ -82,13 +88,26 @@ bool MillerRabin(uint64_t p, int k){
 		}
 		return false;
 		nextTry:;
+		// ************** //
+		// my version //
+		// for (int j = 0; j < s-1; ++j)
+		// {
+		// 	x = x * x % p
+		// 	if(x == 1)
+		// 		return false;
+		// 	if(x == p-1)
+		// 		break;
+		// }
+		// if(x != p-1)
+		// 	return false;
+		// ************** //
 	}
 	return true; // probably?
 }
 int main(int argc, char const *argv[])
 {
 	cout << power(2,11) << endl;
-	cout << 5 << " " << Fermat(5,3) << "  isPrime " << isPrime(5) << endl;
+	cout << 341 << " " << Fermat(341,3) << "  isPrime " << isPrime(341) << endl;
 	cout << 101 << " " << Fermat(101,3) << "  isPrime " << isPrime(101) << endl;
 	cout << 103 << " " << Fermat(103,3) << "  isPrime " << isPrime(103) << endl;
 	cout << 111 << " " << Fermat(111,3) << "  isPrime " << isPrime(111) << endl;
@@ -96,5 +115,7 @@ int main(int argc, char const *argv[])
 	cout << 10001 << " " << Fermat(10001, 5) << "  isPrime " << isPrime(10001) << endl;
 	cout << 561 << " " << Fermat(561, 5) << "  isPrime " << isPrime(561) << endl; //Carmichael number 3*11*17 
 	cout << 1105 << " " << MillerRabin(1105,5) << "  isPrime " << isPrime(1105) << endl;
+	cout << 11 << " " << MillerRabin(11,5) << "  isPrime " << isPrime(11) << endl;
+	
 	return 0;
 }

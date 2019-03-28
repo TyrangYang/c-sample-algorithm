@@ -55,6 +55,7 @@ public:
 		delete p->next;
 		p->next = nullptr;
 	}
+
 	~linkList(){
 		Node* q;
 		for(Node* p = head; p != nullptr; p = q){
@@ -92,6 +93,7 @@ linkList<int> f(){
 	a.addEnd(4);
 	return a;
 }
+
 int main(int argc, char const *argv[])
 {
 	linkList<int> a;
