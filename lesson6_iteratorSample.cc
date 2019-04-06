@@ -30,7 +30,7 @@ public:
 		bool operator !() const {return pos < list.size;}
 		void operator ++() {pos ++;}
 		T& operator *() const {return list.data[pos];}
-		~const_Iterator();
+		~const_Iterator(){};
 		
 	};
 	
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 	GrowArray<int> a(10);
 	a.addEnd(5);
 	a.addEnd(9);
-	for(GrowArray<int> :: Iterator i(a); !i ; ++i){
+	for(GrowArray<int> :: const_Iterator i(a); !i ; ++i){
 		cout << *i << " ";
 	}
 	cout << endl;

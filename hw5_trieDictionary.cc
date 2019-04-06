@@ -12,9 +12,7 @@ private:
 		trieNode(){
 			isWord = false;
 			for (int i = 0; i < 26; ++i)
-			{
 				next[i] = nullptr;
-			}
 		};
 		~trieNode(){};
 		trieNode* next[26];
@@ -76,9 +74,17 @@ int main(int argc, char const *argv[])
 		f >> word;
 		td.insert(word);
 	}
+	f.close();
 
-	cout << td.isContains("zygon") << endl;
-	cout << td.isContainsPrefix("CATA") << endl;
+
+	ifstream test("dict_test.txt");
+	string testword;
+	while(!test.eof()){
+		test >> testword;
+		cout << "Test word is: " << testword << "\t";
+		cout << "isContains: " << td.isContains(testword) << "\t";
+		cout << "isContainsPrefix: " << td.isContainsPrefix(testword) << endl;
+	}
 
 	return 0;
 }

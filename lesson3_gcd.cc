@@ -17,8 +17,8 @@ int bruteforcegcd(int a, int b){
 	return 1;
 }
 int gcd(int a, int b){ // greatest common divisor.
-	int small = min(a,b);
-	int big = max(a,b);
+	int small = a<b ? a : b;
+	int big = a >= b ? a : b;
 	while(small != 0){
 		int temp = small;
 		small = big % small;

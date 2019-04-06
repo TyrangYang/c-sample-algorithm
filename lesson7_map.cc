@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
 	stock["apple"] = 152;
 	stock["IBM"] = 119.5;
 	stock["baidu"] = 138;
+	stock["apple"] = 1;
 
 	for(unordered_map<string, double>:: iterator i = stock.begin(); i!= stock.end();++i){
 		cout << i -> first << " ==> " << i -> second << endl;

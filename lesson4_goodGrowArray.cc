@@ -19,7 +19,7 @@ private:
 	}
 public:
 	goodGrowArray() : data(new T[1]), len(0), capacity(1){}
-	goodGrowArray(int capacity): data(new T[1]), len(0), capacity(capacity){}
+	goodGrowArray(int capacity): data(new T[capacity]), len(0), capacity(capacity){}
 	~goodGrowArray(){
 		delete[] data;
 	}

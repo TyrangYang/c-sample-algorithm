@@ -9,11 +9,8 @@ using namespace std;
 
 // hash fuction: what your want ====> where you can find.
 
-
-
 int main(int argc, char const *argv[])
 {
-	/* code */
 	
 	return 0;
 }
