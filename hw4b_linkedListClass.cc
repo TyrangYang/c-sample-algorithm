@@ -175,6 +175,35 @@ public:
 		}
 	}
 
+	void reverseLinkedList(){
+		if(head == nullptr || head == tail)
+			return;
+		if(head -> next == tail){
+			LinkedListNode* temp = head;
+			head -> next = nullptr;
+			tail -> next = head;
+			head = tail;
+			tail = temp;
+			return;
+		}
+
+		LinkedListNode* p = head;
+		LinkedListNode* q = head -> next;
+		LinkedListNode* t = head -> next -> next;
+		head -> next = nullptr;
+
+		while(t != nullptr){
+			q -> next = p;
+			p = q;
+			q = t;
+			t = t -> next;
+		}
+		q -> next = p;
+
+		tail = head;
+		head = q;
+	}
+
 	class const_iterator
 	{
 	private:
@@ -243,7 +272,18 @@ int main(int argc, char const *argv[])
 		if(cmd == "OUTPUT"){
 			cout << ls << endl;
 		}
+		if(cmd == "RE"){
+			ls.reverseLinkedList();
+		}
 	}
+
+	LinkedList2 ls2;
+
+	ls2.addStart(1);
+	ls2.addEnd(2);
+	ls2.reverseLinkedList();
+
+	cout << "ls2: " << ls2 << endl;
 
 	// ls.OUTPUT();
 

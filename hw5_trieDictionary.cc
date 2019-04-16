@@ -19,11 +19,26 @@ private:
 		bool isWord;
 	};
 
+	void deleteNode(trieNode* p){
+		for (int i = 0; i < 26; ++i)
+		{
+			if(p->next[i] != nullptr)
+				deleteNode(p->next[i]);
+		}
+		delete p;
+	}
+
 public:
 	TrieDictionary(){
 		root = new trieNode();
 	};
-	~TrieDictionary(){};
+	~TrieDictionary(){
+		for (int i = 0; i < 26; ++i)
+		{
+			if(root -> next[i] != nullptr)
+				deleteNode(root -> next[i]);
+		}
+	};
 
 	trieNode* root;
 
