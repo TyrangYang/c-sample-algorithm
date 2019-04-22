@@ -1,5 +1,5 @@
-# This is a repository for CPE593
-Repository contain lesson sample code and homework.
+# Repository for CPE593
+This repository contain lesson sample codes and homeworks.
 
 ## Homework List
 * Eratosthenes
@@ -13,7 +13,7 @@ Repository contain lesson sample code and homework.
 * Linear Chaining Hash Map
 * Matrix Operaton and Solve Eqution
 
-## Extro Point Homework
+## Optional Homework for Extra Point
 * Optimal K for Knuth Quick Sort
 * Show Distribution of Unfair Shuffle (Compare with Fisher Yates)
 * Golden mean searchs
