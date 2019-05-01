@@ -10,12 +10,14 @@ Author: Haolin Yang
 // we step 2i since we don't need to calculate the even number.
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 int improvedEratosthenes(uint64_t n){
-  bool* isPrime = new bool[n+1];
+  vector<bool> isPrime(n+1, false);
+  // bool* isPrime = new bool[n+1];
   // bool isPrime[n+1];
-  uint64_t num_Prime = 0;
+  long long num_Prime = 0;
   for (uint64_t i = 2; i <= n; i++){ // 2 and all odd number are signed true
     if(i == 2 || i % 2 == 1){
       isPrime[i] = true;
@@ -32,12 +34,12 @@ int improvedEratosthenes(uint64_t n){
         isPrime[j] = false;
     }
   }
-  delete[] isPrime;
+  // delete[] isPrime;
   return num_Prime + 1; // start from 3. add 1 for conuting the number 2.
 }
 
 int main(){
-	int n;
+	uint64_t n;
   //while(true){
   cout << "Please input a number: ";
   cin >> n;

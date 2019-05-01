@@ -185,7 +185,7 @@ int main(int argc, char const *argv[])
 {
 	Matrix<double> a(3,4,0.0);  // O(mn) = O(3*4)
 	Matrix<double> b(4,2,1.0); //O(n*p) = O(4*2);
-	Matrix<double> c = b; // make a copy O(np)
+	Matrix<double> c = b; // make a copy O(np) // copy constructor
 	Matrix<double> d = a + a;  //O(mn)
 
 	a(1,1) = 10;
@@ -193,20 +193,22 @@ int main(int argc, char const *argv[])
 	cout << b(1,2) << endl; // calls operator()(int,int)const
 
 	Matrix<double> e = a * b;  //O(mnp)    O(n^3)
-	cout << "+++++++++++++++++++++++" << endl;
+	cout << "+++++++++++a++++++++++++" << endl;
 	cout << a << endl;
-	cout << "+++++++++++++++++++++++" << endl;
+	cout << "+++++++++++b++++++++++++" << endl;
 	cout << b << endl;
-	cout << "+++++++++++++++++++++++" << endl;
+	cout << "+++++++++++c++++++++++++" << endl;
 	cout << c << endl;
-	cout << "+++++++++++++++++++++++" << endl;
+	cout << "+++++++++++d++++++++++++" << endl;
 	cout << d << endl;
-	cout << "+++++++++++++++++++++++" << endl;
+	cout << "+++++++++++e++++++++++++" << endl;
 	cout << e << endl;
-	cout << "+++++++++++++++++++++++" << endl;
 
-	e = b;
+	a = e = b;
+	cout << "+++++++++++e++++++++++++" << endl;
 	cout << e << endl;
+	cout << "+++++++++++a++++++++++++" << endl;
+	cout << a << endl;
 	/*
 	a11 a12 a13      x           B1
 	a21 a22 a23      y     =     B2

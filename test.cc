@@ -1,34 +1,23 @@
-#include <iostream>
-#include <string>
 #include <vector>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
-int* removeE(int* test, int index, int len){
-    if(index > len)
-        return test;
-    else{
-        for (int i = index; i < len - 1;)
-        {
-            test[i] = test[++i];
-            // cout << test[i] << endl;
-        }
-        int* res = new int[len - 1];
-        for (int i = 0; i < len - 1; ++i)
-        {
-            res[i] = test[i];
-            // cout << res[i] << " " << test[i] << endl;
-        }
-        return res;
-    }
-}
-
-int main()
+int main(int argc, char const *argv[])
 {
-    for (int i = 0; i < 4; ++i)
-    {
-        if(i == 0)
-            continue;
+    cout << "test" << endl;
+    std::vector<int> isprime (10,1);
+    // for (int i = 0; i < 100; ++i)
+    // {
+    //     isprime[i] = 0;
+    // }
+    cout << "test" << endl;
+    isprime[0] = 1;
+    isprime[1] = 0;
+
+    for(auto i: isprime)
         cout << i << endl;
-    }
+    cout << "test" << endl;
+    return 0;
 }
