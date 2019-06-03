@@ -54,7 +54,7 @@ This repository contain lesson sample codes and homeworks.
 * Linked List
 * Tire Dictionary
 * Linear Chaining Hash Map
-* Matrix Operaton and Solve Eqution
+* Matrix Operaton and Solve Eqution // No partial pivot
 
 ## Optional Homework
 * Optimal K for Knuth Quick Sort
