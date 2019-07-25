@@ -11,13 +11,21 @@ private:
 	int rows, cols;
 	T* m;
 	Matrix(int row, int col): rows(row), cols(col), m(new T[rows*cols]){ //new for c++ is O(1). but for java is O(n)
+		cout << "private constructor" << endl;
 		for (int i = 0; i < rows*cols; ++i)
 		{
 			m[i] = 0;
 		}
 	}
 public:
+	Matrix(){
+		rows = 0;
+		cols = 0;
+		m = nullptr;
+	}
+
 	Matrix(int row, int col, T val): rows(row), cols(col), m(new T[rows*cols]){
+		cout << "public constructor" << endl;
 		for (int i = 0; i < rows*cols; ++i)
 		{
 			m[i] = val;
@@ -25,7 +33,7 @@ public:
 	};
 
 	Matrix(const Matrix& orig): rows(orig.rows), cols(orig.cols), m(new T[rows * cols]) {
-		// cout << "copy " << endl;
+		cout << "copy " << endl;
 		for (int i = 0; i < rows; ++i)
 		{
 			for (int j = 0; j < cols; ++j)
@@ -36,7 +44,7 @@ public:
 	}
 
 	Matrix(Matrix&& orig) : rows(orig.rows), cols(orig.cols), m(orig.m) {
-		// cout << "move" << endl;
+		cout << "move" << endl;
 		orig.m = nullptr;
 	}
 
@@ -45,6 +53,7 @@ public:
 	};
 	
 	Matrix& operator =(const Matrix& orig){
+		cout << "operator =" << endl;
 		delete[] m;
 		rows = orig.rows;
 		cols = orig.cols;
@@ -57,6 +66,7 @@ public:
 	}
 
 	friend Matrix operator *(const Matrix& m1, const Matrix& m2){
+		cout << "operator *" << endl;
 		if(m1.cols != m2.rows)
 			throw "The matrix should be matched";
 		int m = m1.rows;
@@ -82,7 +92,7 @@ public:
 	}
 
 	friend Matrix operator +(const Matrix& m1, const Matrix& m2){
-		// cout << "plus" << endl;
+		cout << "operator +" << endl;
 		if(m1.rows != m2.rows || m1.cols != m2.cols)
 			throw "The matrix should be matched";
 		int r = m1.rows; 
@@ -125,19 +135,19 @@ public:
 		return cols;
 	}
 
-	static Matrix read(ifstream& f){
-		int num;
-		f >> num;
-		Matrix<T> res(num,num,0);
-		for (int i = 0; i < num; ++i)
-		{
-			for (int j = 0; j < num; ++j)
-			{
-				f >> res(i, j);
-			}
-		}
-		return res;
-	}
+	// static Matrix read(ifstream& f){
+	// 	int num;
+	// 	f >> num;
+	// 	Matrix<T> res(num,num,0);
+	// 	for (int i = 0; i < num; ++i)
+	// 	{
+	// 		for (int j = 0; j < num; ++j)
+	// 		{
+	// 			f >> res(i, j);
+	// 		}
+	// 	}
+	// 	return res;
+	// }
 	
 	// Matrix transpose() const{
 	// 	Matrix ans(rows, cols);
@@ -167,15 +177,15 @@ public:
 // #endif
 
 
-#if 0
+// #if 0
 int main(int argc, char const *argv[])
 {
 	Matrix<double> m1(3,4,0.0);
 	m1(1,2) = 1.5;
 	Matrix<double> m2(3,4, 1);
 	cout << "=====" << endl;
-	Matrix<double> m3 (m1 + m2) ;
-	// m1 = m3 = m1+m2;
+	Matrix<double> m3;
+	m3 = m1 + m2;
 	cout << "rows:" << m3.getRows() << " cols:" <<  m3.getCols() << endl;
 	cout << "===m1===" << endl;
 	cout << m1 << endl;
@@ -187,13 +197,14 @@ int main(int argc, char const *argv[])
 	Matrix<double> m4(4, 2, 0.5);
 	m4(0,0) = 5.0;
 	m4(0,2) = -1.0;
-	Matrix<double> m5 = m1 * m4;
+	Matrix<double> temp = m1 * m4;
+	Matrix<double> m5 = temp;
 	cout << "===m4===" << endl;
 	cout << m4 << endl;
 	cout << "===m5===" << endl;
 	cout << m5 << endl;
 	return 0;
 }
-#endif
+// #endif
 
 // the main function on course
