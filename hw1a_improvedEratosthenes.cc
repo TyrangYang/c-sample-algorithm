@@ -11,12 +11,12 @@ Author: Haolin Yang
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <bitset>
 using namespace std;
 
 int improvedEratosthenes(uint64_t n){
   vector<bool> isPrime(n+1, false);
-  // bool* isPrime = new bool[n+1];
-  // bool isPrime[n+1];
+
   long long num_Prime = 0;
   for (uint64_t i = 2; i <= n; i++){ // 2 and all odd number are signed true
     if(i == 2 || i % 2 == 1){
@@ -30,7 +30,7 @@ int improvedEratosthenes(uint64_t n){
     if(isPrime[i]){
       //cout << i << " ";
       num_Prime++;
-      for (uint64_t j = i*i; j <= n ; j += 2 * i)// improve from for(uint64_t j=i; j<=n; j+=i)
+      for (uint64_t j = i*i; j <= n ; j += i << 1)// improve from for(uint64_t j=i; j<=n; j+=i)
         isPrime[j] = false;
     }
   }
@@ -39,7 +39,7 @@ int improvedEratosthenes(uint64_t n){
 }
 
 int main(){
-	uint64_t n;
+    uint64_t n;
   //while(true){
   cout << "Please input a number: ";
   cin >> n;
