@@ -1,4 +1,8 @@
 
-test = [i for i in range(10)];
+test = {}
 
-print(test);
+test[1] =0;
+test[2] = 1;
+
+
+print(test)

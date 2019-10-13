@@ -15,6 +15,7 @@ void quickSort(int x[], int L, int R, int k){
     int i = L , j = R;
 
     //swap the pivot to the end. Because, your scan from left first and calculate all number that equal to pivot
+
     int temp = x[pivotIndex];
     x[pivotIndex] = x[R];
     x[R] = temp;
@@ -51,7 +52,7 @@ int isSorted(int x[], int n){
 }
 
 int main(){
-    ifstream f("hw3.dat");
+    ifstream f("hw3_1000test.dat");
     int num;
     f >> num;
 
@@ -73,6 +74,5 @@ int main(){
     cout  << endl;
 
     cout<<isSorted(seq,num)<<endl;
-
 
 }

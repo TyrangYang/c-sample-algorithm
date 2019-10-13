@@ -60,8 +60,8 @@ bool Fermat(uint64_t p, int k){
 
 // https://www.cnblogs.com/Norlan/p/5350243.html
 bool MillerRabin(uint64_t p, int k){
+	if(p < 2) return false;
 	for (int i = 0; i < k ;i++){
-		
 		uint64_t a = random(2,p-2);
 		uint64_t d = p-1;
 		uint64_t s = 0;
@@ -107,6 +107,7 @@ bool MillerRabin(uint64_t p, int k){
 int main(int argc, char const *argv[])
 {
 	cout << power(2,11) << endl;
+	cout << powermod(2,340,341) << endl;
 	cout << 341 << " " << Fermat(341,3) << "  isPrime " << isPrime(341) << endl;
 	cout << 101 << " " << Fermat(101,3) << "  isPrime " << isPrime(101) << endl;
 	cout << 103 << " " << Fermat(103,3) << "  isPrime " << isPrime(103) << endl;
