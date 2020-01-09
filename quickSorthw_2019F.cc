@@ -7,35 +7,37 @@
 using namespace std;
 
 default_random_engine generator;
-int randomInt(int L, int R){
-    uniform_int_distribution<int> random(L, R);
-    return random(generator);
+int randomInt(int L, int R)
+{
+	uniform_int_distribution<int> random(L, R);
+	return random(generator);
 }
 
-void quickSort(vector<int>& willSorted, int left, int right){ // [left, rigth)
+void quickSort(vector<int> &willSorted, int left, int right)
+{ // [left, rigth)
 	int pivotIndex = randomInt(left, right - 1);
-    int pivot = willSorted[pivotIndex];
+	int pivot = willSorted[pivotIndex];
 
-    swap(willSorted[pivotIndex], willSorted[right-1]);
-    
-    auto it = partition(willSorted.begin() + left, willSorted.begin() + right - 1, [pivot](int a){return a < pivot;});
-    
-    int position = it - willSorted.begin();
-	swap(it, willSorted[right-1]);
+	swap(willSorted[pivotIndex], willSorted[right - 1]);
 
-    if(position - left > 1){
-    	// cout << " * " <<endl;
-	    quickSort(willSorted, left, position);
-    }
-	if(right - 1 - position + 1 > 1){
-		// cout << "-" << endl;
-	    quickSort(willSorted, position + 1, right);
+	auto it = partition(willSorted.begin() + left, willSorted.begin() + right - 1, [pivot](int a) { return a < pivot; });
+
+	int position = it - willSorted.begin();
+	swap(it, willSorted[right - 1]);
+
+	if (position - left > 1)
+	{
+		// cout << " * " <<endl;
+		quickSort(willSorted, left, position);
 	}
-	
+	if (right - 1 - position + 1 > 1)
+	{
+		// cout << "-" << endl;
+		quickSort(willSorted, position + 1, right);
+	}
+
 	return;
 }
-
-
 
 int main(int argc, char const *argv[])
 {
@@ -44,7 +46,7 @@ int main(int argc, char const *argv[])
 	int num1;
 	f >> num1;
 
-	vector<vector<int> > all;
+	vector<vector<int>> all;
 
 	for (int i = 0; i < num1; ++i)
 	{
@@ -75,4 +77,3 @@ int main(int argc, char const *argv[])
 	}
 	return 0;
 }
-
